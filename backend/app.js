@@ -7,20 +7,15 @@ const port = 3300;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// GET
-app.get('/api/submit', (req, res) => {
-    console.log('Received GET Request');
-  
-    res.send({data: { d1: 1, d2: 2}});
-  });
+app.use(cors());
 
 // POST
-app.post('/api/submit', (req, res) => {
+app.post('/api/Submit', (req, res) => {
   const postData = req.body;
 
   console.log('Received POST data:', postData);
 
-  res.send({ msg: 'POST request received successfully!'});
+  res.send({ data: postData });
 });
 
 // start
