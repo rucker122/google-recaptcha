@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google reCaptcha v3</title>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <h1>Google reCaptcha v3</h1>
+    <div class="form">
+        <div class="input">
+            <input type="text"/>
+        </div>
+        <div class="input">
+            <input type="password" autocomplete="password"/>
+        </div>
+        <div class="input">
+            <input type="button" onclick="onSubmit()" value="Submit"/>
+        </div>
+    </div>
+
+    <div class="response"></div>
+    <script>
+        const GET_URL = '';
+        async function onSubmit() {
+            let a = await fetch(GET_URL, {
+                method: "GET", // *GET, POST, PUT, DELETE, etc.
+                mode: "no-cors", // no-cors, *cors, same-origin
+            });
+            console.log(a);
+            //  fetch(GET_URL, {
+            //     method: "POST", // *GET, POST, PUT, DELETE, etc.
+            //     mode: "no-cors", // no-cors, *cors, same-origin
+            // }).then(response => {
+            //     console.log(response);
+            // })
+            // .then(json => console.log(json));
+        }
+    </script>
+</body>
+</html>

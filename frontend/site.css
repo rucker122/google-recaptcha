@@ -1,0 +1,49 @@
+body {
+    margin: 12px;
+    background-color: rgb(24, 32, 49);
+    color: #ffe;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form {
+    margin: auto;
+    width: 256px;
+    padding: 32px 32px 12px 32px;
+    background-color: rgb(46, 54, 72);
+    border-radius: 12px;
+}
+
+.input {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    border: none;
+    padding: 4px 8px;
+    background-color: #ddd;
+    font-size: 16px;
+    border-radius: 4px;;
+}
+
+input[type=text]:hover,
+input[type=password]:hover {
+    background-color: #eee;
+}
+
+input[type=button] {
+    width: 88px;
+    border: 1px solid #ddd;
+    border-width: 0 0 2px 0;
+    background-color: rgb(56, 74, 114);
+    color: #eee;
+    padding: 8px 12px;
+}
