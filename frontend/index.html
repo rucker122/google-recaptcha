@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google reCaptcha v3</title>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render={SITE_KEY}"></script>
     <link rel="stylesheet" href="site.css">
 </head>
 <body>
@@ -23,14 +23,24 @@
 
     <div class="response"></div>
     <script>
-        const GET_URL = '';
         async function onSubmit() {
-            await fetch(GET_URL, {
+            grecaptcha.ready(function() {
+                grecaptcha.execute('{SITE_KEY}', {action: 'submit'}).then(function(token) {
+                    console.log(token);
+                    postData(token);
+                });
+            });
+        
+        }
+
+        async function postData(token) {
+            await fetch('http://localhost:3300/api/Submit', {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 },
                 body: JSON.stringify({
+                    token,
                     account: document.getElementById("account").value,
                     password: document.getElementById("password").value
                 })
