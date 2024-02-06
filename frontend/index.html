@@ -25,16 +25,15 @@
     <script>
         async function onSubmit() {
             grecaptcha.ready(function() {
-                grecaptcha.execute('{SITE_KEY}', {action: 'submit'}).then(function(token) {
-                    console.log(token);
-                    postData(token);
+                grecaptcha.execute('{SITE_KEY}', {action: 'submit'}).then(async (token) => {
+                    await postData(token);
                 });
             });
         
         }
 
         async function postData(token) {
-            await fetch('http://localhost:3300/api/Submit', {
+            await fetch('{BACKEND_URL}}', {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"

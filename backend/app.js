@@ -12,11 +12,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // POST
-app.post('/api/Submit', (req, res) => {
+app.post('/api/Submit', async (req, res) => {
   const postData = req.body;
-
-  console.log('Received POST data:', postData);
-  verifyCaptcha(req.token);
+  await verifyCaptcha(req.token);
   res.send({ data: postData });
 });
 
@@ -25,12 +23,12 @@ app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
 
-function verifyCaptcha(t) {
-  fetch(SITE_VERIFY_URL, {
+async function verifyCaptcha(t) {
+  let res = await fetch(SITE_VERIFY_URL, {
     method: 'POST',
-    body: JSON.stringify({
-      secret: SECRET_KEY,
-      response: t
-    })
-  }).then(res => console.log(res));
+    headers: {
+      "Content-type": "application/x-www-form-urlencoded;charset=UTF-8"
+    },
+    body: `secret=${SECRET_KEY}&response=${t}`
+  }).catch(e => console.log(e));
 }
